@@ -1,1055 +1,2015 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Multi Theft Auto | Comunidade</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="011 — PAX PAULINA. História, memória e identidade de São Paulo.">
+
+    <title>AVE 011 — PAX PAULINA</title>
+
 
     <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --bg: #07090c;
-            --card: #0d1117;
-            --card2: #111820;
-            --green: #00ff88;
-            --green-dark: #00b864;
-            --text: #f4f7f8;
-            --muted: #8b969f;
-            --border: rgba(255,255,255,.08);
-            --danger: #ff3d5a;
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
+            background: #070707;
+            color: #f5f5f5;
             font-family: Arial, Helvetica, sans-serif;
-            background:
-                radial-gradient(circle at 80% 10%, rgba(0,255,136,.12), transparent 30%),
-                radial-gradient(circle at 10% 50%, rgba(0,150,255,.08), transparent 30%),
-                var(--bg);
-            color: var(--text);
-            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* NAVBAR */
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-        nav {
-            height: 74px;
-            border-bottom: 1px solid var(--border);
-            background: rgba(7,9,12,.85);
-            backdrop-filter: blur(15px);
+
+        /* =====================================================
+           SCROLLBAR
+        ===================================================== */
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #080808;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d71920;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 78px;
+
+            padding: 0 7%;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 6%;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+
+            z-index: 9999;
+
+            background: rgba(5,5,5,.70);
+
+            backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.08);
+
+            transition: .3s;
         }
+
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+
+            font-size: 28px;
+
             font-weight: 900;
-            letter-spacing: 1px;
+
+            letter-spacing: -2px;
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: grid;
-            place-items: center;
-            background: linear-gradient(135deg, var(--green), #00aaff);
-            color: #06100b;
-            font-size: 20px;
-            box-shadow: 0 0 25px rgba(0,255,136,.25);
-        }
 
         .logo span {
-            color: var(--green);
+
+            color: #e3262e;
         }
 
-        .nav-links {
+
+        nav {
+
             display: flex;
-            gap: 28px;
+
+            gap: 30px;
         }
 
-        .nav-links a {
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 14px;
-            transition: .2s;
+
+        nav a {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            color: #ddd;
+
+            transition: .3s;
         }
 
-        .nav-links a:hover {
-            color: var(--green);
+
+        nav a:hover {
+
+            color: #e3262e;
+
         }
 
-        .nav-actions {
-            display: flex;
-            gap: 10px;
-        }
 
-        button {
-            border: 0;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .btn {
-            padding: 11px 18px;
-            border-radius: 9px;
-            color: white;
-            background: #151b22;
-            border: 1px solid var(--border);
-        }
-
-        .btn-primary {
-            background: var(--green);
-            color: #06100b;
-            box-shadow: 0 0 20px rgba(0,255,136,.15);
-        }
-
-        /* HERO */
+        /* =====================================================
+           HERO
+        ===================================================== */
 
         .hero {
-            min-height: 590px;
-            display: flex;
-            align-items: center;
-            padding: 70px 7%;
+
+            min-height: 100vh;
+
             position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            padding:
+                120px
+                8%
+                80px;
+
             overflow: hidden;
-        }
 
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(90deg, #07090c 5%, rgba(7,9,12,.85) 45%, rgba(7,9,12,.35)),
-                linear-gradient(0deg, var(--bg), transparent);
-            z-index: 1;
-        }
 
-        .hero-city {
-            position: absolute;
-            inset: 0;
             background:
-                linear-gradient(135deg, transparent 60%, rgba(0,255,136,.06)),
-                repeating-linear-gradient(
+
+                linear-gradient(
                     90deg,
-                    transparent 0,
-                    transparent 90px,
-                    rgba(255,255,255,.025) 91px
+                    rgba(0,0,0,.98) 0%,
+                    rgba(0,0,0,.85) 40%,
+                    rgba(60,0,0,.30) 100%
+                ),
+
+                radial-gradient(
+                    circle at 80% 50%,
+                    #8d1117 0%,
+                    #31080b 30%,
+                    #080808 70%
                 );
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 720px;
-        }
 
-        .badge {
-            display: inline-block;
-            padding: 8px 13px;
-            background: rgba(0,255,136,.08);
-            color: var(--green);
-            border: 1px solid rgba(0,255,136,.2);
-            border-radius: 30px;
-            font-size: 12px;
-            margin-bottom: 22px;
-        }
+        .hero::before {
 
-        h1 {
-            font-size: clamp(45px, 7vw, 82px);
-            line-height: .95;
-            text-transform: uppercase;
-            letter-spacing: -3px;
-        }
+            content: "";
 
-        h1 strong {
-            color: var(--green);
-            text-shadow: 0 0 35px rgba(0,255,136,.25);
-        }
+            position: absolute;
 
-        .hero p {
-            color: var(--muted);
-            max-width: 600px;
-            line-height: 1.7;
-            margin: 25px 0;
-            font-size: 16px;
-        }
+            width: 700px;
+            height: 700px;
 
-        .hero-buttons {
-            display: flex;
-            gap: 12px;
-        }
+            right: -250px;
+            top: 100px;
 
-        .hero-btn {
-            padding: 15px 25px;
-            border-radius: 10px;
-            font-size: 14px;
-        }
-
-        /* STATS */
-
-        .stats {
-            padding: 0 7%;
-            margin-top: -45px;
-            position: relative;
-            z-index: 5;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-
-        .stat {
-            background: rgba(13,17,23,.92);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 23px;
-            backdrop-filter: blur(10px);
-        }
-
-        .stat small {
-            color: var(--muted);
-        }
-
-        .stat strong {
-            display: block;
-            margin-top: 8px;
-            font-size: 27px;
-        }
-
-        .online {
-            color: var(--green);
-        }
-
-        /* CONTENT */
-
-        .container {
-            width: 86%;
-            max-width: 1400px;
-            margin: 80px auto;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 25px;
-        }
-
-        .section-header h2 {
-            font-size: 25px;
-        }
-
-        .section-header a {
-            color: var(--green);
-            text-decoration: none;
-            font-size: 13px;
-        }
-
-        .servers {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .server {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 20px;
-            transition: .25s;
-        }
-
-        .server:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0,255,136,.25);
-            box-shadow: 0 15px 40px rgba(0,0,0,.25);
-        }
-
-        .server-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .server-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            background: linear-gradient(135deg,#13271e,#102b34);
-            display: grid;
-            place-items: center;
-            font-size: 20px;
-        }
-
-        .status {
-            color: var(--green);
-            font-size: 12px;
-        }
-
-        .server h3 {
-            margin-top: 18px;
-        }
-
-        .server p {
-            color: var(--muted);
-            font-size: 13px;
-            margin-top: 7px;
-        }
-
-        .server-info {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            color: var(--muted);
-            font-size: 12px;
-        }
-
-        .server-info strong {
-            color: white;
-        }
-
-        .server-btn {
-            width: 100%;
-            margin-top: 18px;
-            padding: 11px;
-            border-radius: 8px;
-            background: #151d23;
-            color: white;
-        }
-
-        /* COMMUNITY */
-
-        .community {
-            display: grid;
-            grid-template-columns: 1.6fr 1fr;
-            gap: 20px;
-        }
-
-        .feed,
-        .side-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 20px;
-        }
-
-        .post {
-            border-bottom: 1px solid var(--border);
-            padding: 20px 0;
-        }
-
-        .post:first-child {
-            padding-top: 0;
-        }
-
-        .user {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .avatar {
-            width: 42px;
-            height: 42px;
             border-radius: 50%;
-            background: linear-gradient(135deg,#00ff88,#008cff);
-            display: grid;
-            place-items: center;
-            color: #06100b;
+
+            border:
+                1px solid
+                rgba(255,255,255,.08);
+
+            box-shadow:
+
+                0 0 0 80px
+                rgba(255,255,255,.015),
+
+                0 0 0 160px
+                rgba(255,255,255,.01);
+        }
+
+
+        .hero::after {
+
+            content: "SÃO PAULO";
+
+            position: absolute;
+
+            right: -80px;
+            bottom: 20px;
+
+            font-size:
+                clamp(100px, 17vw, 280px);
+
+            font-weight: 900;
+
+            letter-spacing: -10px;
+
+            color:
+                rgba(255,255,255,.025);
+
+            white-space: nowrap;
+        }
+
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 900px;
+        }
+
+
+        .tag {
+
+            display: inline-block;
+
+            margin-bottom: 20px;
+
+            color: #e3262e;
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+        }
+
+
+        .hero h1 {
+
+            font-size:
+                clamp(120px, 20vw, 300px);
+
+            line-height: .72;
+
+            letter-spacing: -18px;
+
+            margin-left: -15px;
+
             font-weight: 900;
         }
 
-        .user small {
-            color: var(--muted);
+
+        .hero h2 {
+
+            margin-top: 40px;
+
+            font-size:
+                clamp(35px, 5vw, 70px);
+
+            line-height: .9;
+
+            letter-spacing: -3px;
+
+            color: #fff;
         }
 
-        .post-content {
-            color: #ccd4da;
-            line-height: 1.6;
-            margin: 15px 0;
+
+        .hero h2::first-line {
+
+            color: #e3262e;
         }
 
-        .post-actions {
-            display: flex;
-            gap: 18px;
-            color: var(--muted);
+
+        .hero p {
+
+            max-width: 620px;
+
+            margin-top: 28px;
+
+            color: #aaa;
+
+            line-height: 1.8;
+
+            font-size: 17px;
+        }
+
+
+        .hero-button {
+
+            display: inline-block;
+
+            margin-top: 35px;
+
+            padding: 17px 30px;
+
+            background: #e3262e;
+
+            color: #fff;
+
             font-size: 13px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            transition: .3s;
         }
 
-        .post-actions span {
-            cursor: pointer;
+
+        .hero-button:hover {
+
+            background: #fff;
+
+            color: #111;
+
+            transform:
+                translateY(-5px);
         }
 
-        .post-actions span:hover {
-            color: var(--green);
-        }
 
-        .side-card {
-            margin-bottom: 20px;
-        }
+        /* =====================================================
+           INTRO
+        ===================================================== */
 
-        .side-card h3 {
-            margin-bottom: 18px;
-        }
+        .intro {
 
-        .member {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-        }
+            padding:
+                140px
+                8%;
 
-        .member:last-child {
-            border-bottom: 0;
-        }
-
-        .member-info {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .mini-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #18252c;
             display: grid;
-            place-items: center;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 100px;
+
+            align-items: center;
+
+            background: #f1efeb;
+
+            color: #111;
+        }
+
+
+        .intro-number {
+
+            font-size:
+                clamp(120px, 20vw, 280px);
+
+            font-weight: 900;
+
+            line-height: .7;
+
+            color: #e3262e;
+
+            letter-spacing: -15px;
+        }
+
+
+        .intro-label {
+
+            margin-top: 20px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+
+            color: #777;
+        }
+
+
+        .intro h2 {
+
+            font-size:
+                clamp(40px, 5vw, 75px);
+
+            line-height: .92;
+
+            letter-spacing: -4px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .intro p {
+
+            color: #555;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           SECTION TITLES
+        ===================================================== */
+
+        .section-title {
+
+            margin-bottom: 90px;
+        }
+
+
+        .section-title small {
+
+            color: #e3262e;
+
+            font-weight: 900;
+
+            letter-spacing: 4px;
+        }
+
+
+        .section-title h2 {
+
+            margin-top: 15px;
+
+            font-size:
+                clamp(55px, 8vw, 115px);
+
+            line-height: .8;
+
+            letter-spacing: -7px;
+        }
+
+
+        .section-description {
+
+            max-width: 650px;
+
+            margin-top: 30px;
+
+            color: #777;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           HISTÓRIA
+        ===================================================== */
+
+        .history {
+
+            padding:
+                140px
+                8%;
+
+            background: #0c0c0c;
+        }
+
+
+        .timeline {
+
+            position: relative;
+
+            max-width: 1100px;
+
+            margin: auto;
+        }
+
+
+        .timeline::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+
+            top: 0;
+
+            width: 2px;
+
+            height: 100%;
+
+            background: #e3262e;
+
+            transform:
+                translateX(-50%);
+        }
+
+
+        .event {
+
+            position: relative;
+
+            width: 50%;
+
+            padding:
+                30px
+                60px;
+
+            opacity: 0;
+
+            transform:
+                translateY(50px);
+
+            transition:
+                opacity .8s ease,
+                transform .8s ease;
+        }
+
+
+        .event:nth-child(odd) {
+
+            left: 0;
+
+            text-align: right;
+        }
+
+
+        .event:nth-child(even) {
+
+            left: 50%;
+        }
+
+
+        .event::after {
+
+            content: "";
+
+            position: absolute;
+
+            top: 42px;
+
+            width: 14px;
+            height: 14px;
+
+            border-radius: 50%;
+
+            background: #e3262e;
+
+            box-shadow:
+                0 0 0 7px #0c0c0c,
+                0 0 25px #e3262e;
+        }
+
+
+        .event:nth-child(odd)::after {
+
+            right: -7px;
+        }
+
+
+        .event:nth-child(even)::after {
+
+            left: -7px;
+        }
+
+
+        .year {
+
+            color: #e3262e;
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+        }
+
+
+        .event h3 {
+
+            margin:
+                10px 0;
+
+            font-size: 34px;
+        }
+
+
+        .event p {
+
+            color: #999;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           CAPÍTULOS
+        ===================================================== */
+
+        .chapters {
+
+            padding:
+                140px
+                8%;
+
+            background: #f1efeb;
+
+            color: #111;
+        }
+
+
+        .chapter-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .card {
+
+            min-height: 430px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 35px;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #401014,
+                    #090909
+                );
+
+            color: white;
+
+            transition: .4s;
+        }
+
+
+        .card:hover {
+
+            transform:
+                translateY(-10px);
+        }
+
+
+        .card:nth-child(2) {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #705020,
+                    #111
+                );
+        }
+
+
+        .card:nth-child(3) {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #243b4c,
+                    #080808
+                );
+        }
+
+
+        .card::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,.95),
+                    transparent
+                );
+        }
+
+
+        .card-content {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .card-number {
+
+            color: #e3262e;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+        }
+
+
+        .card h3 {
+
+            font-size: 35px;
+
+            margin: 12px 0;
+        }
+
+
+        .card p {
+
+            color: #aaa;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           CASOS JUDICIAIS
+        ===================================================== */
+
+        .cases {
+
+            padding:
+                140px
+                8%;
+
+            background: #070707;
+        }
+
+
+        .case-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
+
+            max-width: 1200px;
+
+            margin: auto;
+        }
+
+
+        .case-card {
+
+            min-height: 620px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background: #111;
+
+            border:
+                1px solid #252525;
+
+            transition: .4s;
+        }
+
+
+        .case-card:hover {
+
+            transform:
+                translateY(-8px);
+
+            border-color: #e3262e;
+        }
+
+
+        .case-image {
+
+            height: 310px;
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #343434,
+                    #080808
+                );
+        }
+
+
+        .case-image::after {
+
+            content: "ARQUIVO 011";
+
+            position: absolute;
+
+            right: 25px;
+
+            bottom: 20px;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+
+            color: #777;
+        }
+
+
+        .case-image::before {
+
+            content: "011";
+
+            position: absolute;
+
+            right: 20px;
+
+            top: 30px;
+
+            font-size: 130px;
+
+            line-height: 1;
+
+            font-weight: 900;
+
+            color:
+                rgba(255,255,255,.035);
+        }
+
+
+        .case-content {
+
+            padding: 35px;
+        }
+
+
+        .case-number {
+
+            color: #e3262e;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+        }
+
+
+        .case-content h3 {
+
+            margin:
+                15px 0;
+
+            font-size: 43px;
+
+            letter-spacing: -2px;
+        }
+
+
+        .case-content p {
+
+            color: #999;
+
+            line-height: 1.8;
+        }
+
+
+        .case-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            margin-top: 30px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #292929;
+        }
+
+
+        .case-status strong {
+
+            color: #e3262e;
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+        }
+
+
+        .case-status span {
+
+            color: #666;
+
+            font-size: 11px;
+        }
+
+
+        .information {
+
+            display: flex;
+
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #26090b,
+                    #0a0a0a
+                );
+        }
+
+
+        .information h3 {
+
+            font-size:
+                clamp(40px, 5vw, 70px);
+
+            line-height: .9;
+        }
+
+
+        /* =====================================================
+           QUOTE
+        ===================================================== */
+
+        .quote {
+
+            min-height: 70vh;
+
+            padding:
+                100px 10%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e3262e,
+                    #790b10
+                );
+        }
+
+
+        .quote blockquote {
+
+            max-width: 1100px;
+
+            font-size:
+                clamp(38px, 6vw, 90px);
+
+            font-weight: 900;
+
+            line-height: .92;
+
+            letter-spacing: -4px;
+        }
+
+
+        .quote cite {
+
+            display: block;
+
+            margin-top: 35px;
+
+            font-style: normal;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 4px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            padding:
+                60px 8%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background: #040404;
+
+            border-top:
+                1px solid #222;
+        }
+
+
+        footer .logo {
+
+            font-size: 40px;
+        }
+
+
+        footer p {
+
+            color: #666;
+
             font-size: 12px;
         }
 
-        .member small {
-            color: var(--muted);
-        }
 
-        /* FOOTER */
+        /* =====================================================
+           RESPONSIVO
+        ===================================================== */
 
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 40px 7%;
-            color: var(--muted);
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-        }
+        @media (max-width: 850px) {
 
-        /* MODAL */
+            header {
 
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 999;
-            background: rgba(0,0,0,.75);
-            backdrop-filter: blur(8px);
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+                height: 65px;
 
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-box {
-            width: 100%;
-            max-width: 420px;
-            background: #0d1117;
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 30px;
-            box-shadow: 0 30px 80px rgba(0,0,0,.5);
-        }
-
-        .modal-box h2 {
-            margin-bottom: 8px;
-        }
-
-        .modal-box p {
-            color: var(--muted);
-            font-size: 13px;
-            margin-bottom: 25px;
-        }
-
-        .input {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 12px;
-            background: #080b0f;
-            border: 1px solid var(--border);
-            border-radius: 9px;
-            color: white;
-            outline: none;
-        }
-
-        .input:focus {
-            border-color: var(--green);
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            border-radius: 9px;
-            background: var(--green);
-            color: #06100b;
-            margin-top: 5px;
-        }
-
-        .close {
-            float: right;
-            cursor: pointer;
-            color: var(--muted);
-            font-size: 20px;
-        }
-
-        /* RESPONSIVE */
-
-        @media (max-width: 900px) {
-            .nav-links {
-                display: none;
+                padding: 0 5%;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(2,1fr);
-            }
 
-            .servers {
-                grid-template-columns: 1fr;
-            }
-
-            .community {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 600px) {
             nav {
-                padding: 0 20px;
-            }
 
-            .nav-actions .btn:first-child {
                 display: none;
             }
+
 
             .hero {
-                padding: 60px 25px 100px;
+
+                padding:
+                    100px 7%
+                    70px;
             }
 
-            .stats {
-                padding: 0 20px;
+
+            .hero h1 {
+
+                letter-spacing: -9px;
             }
 
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
+
+            .intro {
+
+                grid-template-columns: 1fr;
+
+                gap: 60px;
+
+                padding:
+                    100px 7%;
             }
 
-            .container {
-                width: calc(100% - 40px);
+
+            .timeline::before {
+
+                left: 8px;
             }
+
+
+            .event,
+            .event:nth-child(odd),
+            .event:nth-child(even) {
+
+                width: 100%;
+
+                left: 0;
+
+                text-align: left;
+
+                padding:
+                    30px
+                    20px
+                    30px
+                    45px;
+            }
+
+
+            .event:nth-child(odd)::after,
+            .event:nth-child(even)::after {
+
+                left: 1px;
+
+                right: auto;
+            }
+
+
+            .chapter-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .case-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .history,
+            .chapters,
+            .cases {
+
+                padding:
+                    100px 7%;
+            }
+
 
             footer {
+
                 flex-direction: column;
-                gap: 15px;
+
+                gap: 20px;
+
+                text-align: center;
             }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-<nav>
-    <div class="logo">
-        <div class="logo-icon">M</div>
-        MULTI <span>THEFT AUTO</span>
-    </div>
 
-    <div class="nav-links">
-        <a href="#">Início</a>
-        <a href="#servidores">Servidores</a>
-        <a href="#comunidade">Comunidade</a>
-        <a href="#">Notícias</a>
-        <a href="#">Eventos</a>
-    </div>
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
 
-    <div class="nav-actions">
-        <button class="btn" onclick="openModal('login')">Entrar</button>
-        <button class="btn btn-primary" onclick="openModal('register')">
-            Criar conta
-        </button>
-    </div>
-</nav>
+    <header>
 
-<section class="hero">
+        <div class="logo">
 
-    <div class="hero-city"></div>
-
-    <div class="hero-content">
-
-        <div class="badge">
-            ● COMUNIDADE ONLINE
-        </div>
-
-        <h1>
-            ENTRE NA<br>
-            <strong>CIDADE.</strong>
-        </h1>
-
-        <p>
-            Encontre servidores, conheça jogadores, participe da comunidade
-            e viva uma nova experiência multiplayer dentro do universo
-            Multi Theft Auto.
-        </p>
-
-        <div class="hero-buttons">
-            <button class="hero-btn btn-primary"
-                    onclick="document.querySelector('#servidores').scrollIntoView({behavior:'smooth'})">
-                Encontrar servidores
-            </button>
-
-            <button class="hero-btn btn"
-                    onclick="openModal('register')">
-                Criar minha conta
-            </button>
-        </div>
-
-    </div>
-</section>
-
-<section class="stats">
-
-    <div class="stats-grid">
-
-        <div class="stat">
-            <small>JOGADORES ONLINE</small>
-            <strong class="online" id="players">1.284</strong>
-        </div>
-
-        <div class="stat">
-            <small>SERVIDORES ONLINE</small>
-            <strong id="servers">47</strong>
-        </div>
-
-        <div class="stat">
-            <small>USUÁRIOS REGISTRADOS</small>
-            <strong>12.840</strong>
-        </div>
-
-        <div class="stat">
-            <small>STATUS DA PLATAFORMA</small>
-            <strong class="online">ONLINE</strong>
-        </div>
-
-    </div>
-
-</section>
-
-<section class="container" id="servidores">
-
-    <div class="section-header">
-        <h2>Servidores em destaque</h2>
-        <a href="#">Ver todos →</a>
-    </div>
-
-    <div class="servers">
-
-        <div class="server">
-
-            <div class="server-top">
-                <div class="server-icon">🚓</div>
-                <span class="status">● ONLINE</span>
-            </div>
-
-            <h3>Brasil Roleplay</h3>
-            <p>Roleplay • Português • Brasil</p>
-
-            <div class="server-info">
-                <span>Jogadores<br><strong>128 / 256</strong></span>
-                <span>Ping<br><strong>32ms</strong></span>
-                <span>Versão<br><strong>1.6</strong></span>
-            </div>
-
-            <button class="server-btn">
-                Ver servidor
-            </button>
+            <span>AVE</span> 011
 
         </div>
 
-        <div class="server">
 
-            <div class="server-top">
-                <div class="server-icon">🏎️</div>
-                <span class="status">● ONLINE</span>
-            </div>
+        <nav>
 
-            <h3>Extreme Racing</h3>
-            <p>Race • Português • Brasil</p>
+            <a href="#inicio">
+                Início
+            </a>
 
-            <div class="server-info">
-                <span>Jogadores<br><strong>87 / 128</strong></span>
-                <span>Ping<br><strong>41ms</strong></span>
-                <span>Versão<br><strong>1.6</strong></span>
-            </div>
+            <a href="#historia">
+                História
+            </a>
 
-            <button class="server-btn">
-                Ver servidor
-            </button>
+            <a href="#capitulos">
+                Capítulos
+            </a>
 
-        </div>
+            <a href="#casos">
+                Casos
+            </a>
 
-        <div class="server">
+        </nav>
 
-            <div class="server-top">
-                <div class="server-icon">🔫</div>
-                <span class="status">● ONLINE</span>
-            </div>
+    </header>
 
-            <h3>Urban Warfare</h3>
-            <p>DM • Internacional • Brasil</p>
 
-            <div class="server-info">
-                <span>Jogadores<br><strong>64 / 100</strong></span>
-                <span>Ping<br><strong>55ms</strong></span>
-                <span>Versão<br><strong>1.6</strong></span>
-            </div>
 
-            <button class="server-btn">
-                Ver servidor
-            </button>
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
 
-        </div>
+    <section
+        class="hero"
+        id="inicio"
+    >
 
-    </div>
+        <div class="hero-content">
 
-</section>
+            <span class="tag">
+                SÃO PAULO • 011
+            </span>
 
-<section class="container" id="comunidade">
 
-    <div class="section-header">
-        <h2>Comunidade</h2>
-        <a href="#">Abrir comunidade →</a>
-    </div>
+            <h1>
+                011
+            </h1>
 
-    <div class="community">
 
-        <div class="feed">
+            <h2>
+                PAX PAULINA
+            </h2>
 
-            <div class="post">
 
-                <div class="user">
-                    <div class="avatar">N</div>
+            <p>
 
-                    <div>
-                        <strong>NicolasJota</strong><br>
-                        <small>há 2 minutos • Super Administrador</small>
-                    </div>
-                </div>
+                A história de uma cidade que nunca dorme.
 
-                <div class="post-content">
-                    Bem-vindos à nova comunidade Multi Theft Auto!
-                    🚀 Estamos preparando muitas novidades para vocês.
-                </div>
+                Das origens de Piratininga ao crescimento
+                da maior metrópole do Brasil.
 
-                <div class="post-actions">
-                    <span onclick="like(this)">♡ Curtir</span>
-                    <span>💬 Comentar</span>
-                    <span>↗ Compartilhar</span>
-                </div>
+                Uma experiência sobre memória,
+                cultura, política e transformação.
 
-            </div>
+            </p>
 
-            <div class="post">
 
-                <div class="user">
-                    <div class="avatar">J</div>
-
-                    <div>
-                        <strong>JoaoPlayer</strong><br>
-                        <small>há 15 minutos</small>
-                    </div>
-                </div>
-
-                <div class="post-content">
-                    Alguém jogando no servidor Brasil Roleplay hoje?
-                </div>
-
-                <div class="post-actions">
-                    <span onclick="like(this)">♡ Curtir</span>
-                    <span>💬 Comentar</span>
-                    <span>↗ Compartilhar</span>
-                </div>
-
-            </div>
+            <a
+                href="#historia"
+                class="hero-button"
+            >
+                ENTRAR NA HISTÓRIA ↓
+            </a>
 
         </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INTRODUÇÃO
+    ===================================================== -->
+
+    <section class="intro">
 
         <div>
 
-            <div class="side-card">
+            <div class="intro-number">
+                465
+            </div>
 
-                <h3>🟢 Usuários online</h3>
+            <div class="intro-label">
+                ANOS DE HISTÓRIA
+            </div>
 
-                <div class="member">
-                    <div class="member-info">
-                        <div class="mini-avatar">N</div>
-                        <div>
-                            <strong>NicolasJota</strong><br>
-                            <small>Super Admin</small>
-                        </div>
-                    </div>
+        </div>
 
-                    <span class="online">●</span>
-                </div>
 
-                <div class="member">
-                    <div class="member-info">
-                        <div class="mini-avatar">J</div>
-                        <div>
-                            <strong>JoaoPlayer</strong><br>
-                            <small>Jogando</small>
-                        </div>
-                    </div>
+        <div>
 
-                    <span class="online">●</span>
-                </div>
+            <h2>
+                Do pequeno povoado à
+                maior metrópole do Brasil.
+            </h2>
 
-                <div class="member">
-                    <div class="member-info">
-                        <div class="mini-avatar">L</div>
-                        <div>
-                            <strong>LucasMTA</strong><br>
-                            <small>Online</small>
-                        </div>
-                    </div>
 
-                    <span class="online">●</span>
+            <p>
+
+                São Paulo nasceu em 25 de janeiro de 1554,
+                ao redor do colégio jesuíta estabelecido
+                no planalto de Piratininga.
+
+                Ao longo dos séculos, a cidade passou por
+                profundas transformações.
+
+                A presença dos povos indígenas,
+                a colonização portuguesa, as bandeiras,
+                o café, as ferrovias, a imigração,
+                a industrialização e as migrações internas
+                ajudaram a formar a São Paulo contemporânea.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         HISTÓRIA
+    ===================================================== -->
+
+    <section
+        class="history"
+        id="historia"
+    >
+
+        <div class="section-title">
+
+            <small>
+                LINHA DO TEMPO
+            </small>
+
+
+            <h2>
+                A HISTÓRIA
+            </h2>
+
+        </div>
+
+
+        <div class="timeline">
+
+
+            <!-- 1554 -->
+
+            <div class="event">
+
+                <span class="year">
+                    1554
+                </span>
+
+
+                <h3>
+                    Fundação
+                </h3>
+
+
+                <p>
+
+                    Em 25 de janeiro de 1554,
+                    jesuítas estabeleceram o colégio
+                    que deu origem ao núcleo de
+                    São Paulo de Piratininga.
+
+                    A região já era ocupada por
+                    diferentes povos indígenas.
+
+                </p>
+
+            </div>
+
+
+            <!-- BANDEIRAS -->
+
+            <div class="event">
+
+                <span class="year">
+                    SÉCULOS XVI — XVII
+                </span>
+
+
+                <h3>
+                    Bandeiras
+                </h3>
+
+
+                <p>
+
+                    São Paulo tornou-se um importante
+                    ponto de partida de expedições
+                    conhecidas como bandeiras.
+
+                    Essas expedições tiveram diferentes
+                    objetivos, incluindo exploração
+                    territorial, busca por riquezas
+                    e captura e escravização
+                    de indígenas.
+
+                </p>
+
+            </div>
+
+
+            <!-- CICLO DO OURO -->
+
+            <div class="event">
+
+                <span class="year">
+                    SÉCULO XVIII
+                </span>
+
+
+                <h3>
+                    Expansão
+                </h3>
+
+
+                <p>
+
+                    A circulação de pessoas e mercadorias
+                    aumentou e São Paulo passou a ter
+                    papel importante nas conexões entre
+                    diferentes regiões da colônia.
+
+                </p>
+
+            </div>
+
+
+            <!-- CAFÉ -->
+
+            <div class="event">
+
+                <span class="year">
+                    SÉCULO XIX
+                </span>
+
+
+                <h3>
+                    Café
+                </h3>
+
+
+                <p>
+
+                    O café transformou a economia paulista.
+
+                    A riqueza gerada pelo produto ajudou
+                    a financiar ferrovias, infraestrutura,
+                    comércio e novas formas de ocupação
+                    urbana.
+
+                </p>
+
+            </div>
+
+
+            <!-- IMIGRAÇÃO -->
+
+            <div class="event">
+
+                <span class="year">
+                    FINAL DO SÉCULO XIX
+                </span>
+
+
+                <h3>
+                    Imigração
+                </h3>
+
+
+                <p>
+
+                    Italianos, portugueses, espanhóis,
+                    japoneses e pessoas de diversas
+                    origens chegaram a São Paulo.
+
+                    Essa diversidade marcou profundamente
+                    os bairros, a gastronomia, o trabalho
+                    e a cultura paulistana.
+
+                </p>
+
+            </div>
+
+
+            <!-- INDUSTRIALIZAÇÃO -->
+
+            <div class="event">
+
+                <span class="year">
+                    1900 — 1950
+                </span>
+
+
+                <h3>
+                    Industrialização
+                </h3>
+
+
+                <p>
+
+                    São Paulo tornou-se um dos maiores
+                    centros industriais do país.
+
+                    Fábricas, bairros operários,
+                    ferrovias e novas ondas migratórias
+                    mudaram radicalmente a paisagem.
+
+                </p>
+
+            </div>
+
+
+            <!-- METRÓPOLE -->
+
+            <div class="event">
+
+                <span class="year">
+                    1950 — 2000
+                </span>
+
+
+                <h3>
+                    Megacidade
+                </h3>
+
+
+                <p>
+
+                    A população cresceu rapidamente.
+
+                    A construção de grandes avenidas,
+                    edifícios, viadutos e sistemas
+                    de transporte transformou São Paulo
+                    em uma gigantesca área urbana.
+
+                </p>
+
+            </div>
+
+
+            <!-- HOJE -->
+
+            <div class="event">
+
+                <span class="year">
+                    SÉCULO XXI
+                </span>
+
+
+                <h3>
+                    São Paulo hoje
+                </h3>
+
+
+                <p>
+
+                    Hoje, São Paulo é um dos principais
+                    centros econômicos, culturais,
+                    tecnológicos e gastronômicos
+                    da América Latina.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CAPÍTULOS
+    ===================================================== -->
+
+    <section
+        class="chapters"
+        id="capitulos"
+    >
+
+        <div class="section-title">
+
+            <small>
+                CAPÍTULOS
+            </small>
+
+
+            <h2>
+                UMA CIDADE<br>
+                EM MOVIMENTO.
+            </h2>
+
+        </div>
+
+
+        <div class="chapter-grid">
+
+
+            <div class="card">
+
+                <div class="card-content">
+
+                    <span class="card-number">
+                        01 — ORIGENS
+                    </span>
+
+
+                    <h3>
+                        Piratininga
+                    </h3>
+
+
+                    <p>
+
+                        O nascimento do núcleo
+                        de São Paulo e as sociedades
+                        indígenas que já ocupavam
+                        o território.
+
+                    </p>
+
                 </div>
 
             </div>
 
-            <div class="side-card">
 
-                <h3>🔥 Notícias</h3>
 
-                <div class="post-content">
-                    Novo sistema de servidores está chegando!
+            <div class="card">
+
+                <div class="card-content">
+
+                    <span class="card-number">
+                        02 — TRANSFORMAÇÃO
+                    </span>
+
+
+                    <h3>
+                        Café & Ferrovia
+                    </h3>
+
+
+                    <p>
+
+                        O café, as ferrovias e a
+                        transformação econômica que
+                        acelerou o crescimento paulista.
+
+                    </p>
+
                 </div>
 
-                <div class="post-content">
-                    Evento da comunidade neste final de semana.
+            </div>
+
+
+
+            <div class="card">
+
+                <div class="card-content">
+
+                    <span class="card-number">
+                        03 — METRÓPOLE
+                    </span>
+
+
+                    <h3>
+                        São Paulo
+                    </h3>
+
+
+                    <p>
+
+                        A expansão urbana transformou
+                        a cidade em uma das maiores
+                        metrópoles do planeta.
+
+                    </p>
+
                 </div>
 
             </div>
 
         </div>
 
-    </div>
+    </section>
 
-</section>
 
-<footer>
 
-    <div>
-        © 2026 Multi Theft Auto Community
-    </div>
+    <!-- =====================================================
+         CASOS JUDICIAIS
+    ===================================================== -->
 
-    <div>
-        Comunidade • Servidores • Eventos • Suporte
-    </div>
+    <section
+        class="cases"
+        id="casos"
+    >
 
-</footer>
+        <div class="section-title">
 
-<!-- LOGIN / CADASTRO -->
+            <small>
+                POLÍTICA • JUSTIÇA • MEMÓRIA
+            </small>
 
-<div class="modal" id="modal">
 
-    <div class="modal-box">
+            <h2>
+                CASOS QUE<br>
+                MARCARAM SP.
+            </h2>
 
-        <span class="close" onclick="closeModal()">×</span>
 
-        <h2 id="modalTitle">Entrar</h2>
+            <p class="section-description">
 
-        <p id="modalDescription">
-            Entre na sua conta da comunidade.
+                A história de uma cidade também passa
+                pela sua vida política.
+
+                Nesta seção, o site apresenta casos
+                com condenações judiciais documentadas,
+                diferenciando fatos comprovados de
+                acusações ou investigações.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="case-grid">
+
+
+            <!-- =================================================
+                 PAULO MALUF
+            ================================================== -->
+
+            <article class="case-card">
+
+                <div class="case-image">
+
+                </div>
+
+
+                <div class="case-content">
+
+                    <span class="case-number">
+                        01 — ARQUIVO POLÍTICO
+                    </span>
+
+
+                    <h3>
+                        Paulo Maluf
+                    </h3>
+
+
+                    <p>
+
+                        Ex-prefeito de São Paulo,
+                        Paulo Maluf foi condenado pela
+                        Primeira Turma do STF por lavagem
+                        de dinheiro na AP 863.
+
+                        A pena fixada foi de
+                        7 anos, 9 meses e 10 dias
+                        de reclusão.
+
+                        Em 2018, também foi condenado
+                        por falsidade ideológica para
+                        fins eleitorais na AP 968,
+                        com pena de 2 anos e 9 meses.
+
+                    </p>
+
+
+                    <div class="case-status">
+
+                        <strong>
+                            CONDENAÇÕES PELO STF
+                        </strong>
+
+
+                        <span>
+                            AP 863 • AP 968
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 DOCUMENTAÇÃO
+            ================================================== -->
+
+            <article
+                class="case-card information"
+            >
+
+                <div class="case-content">
+
+                    <span class="case-number">
+                        011 — DOCUMENTO
+                    </span>
+
+
+                    <h3>
+                        História sem maquiagem.
+                    </h3>
+
+
+                    <p>
+
+                        O objetivo desta seção é registrar
+                        fatos políticos relevantes para a
+                        história de São Paulo.
+
+                        Condenações, decisões judiciais,
+                        investigações e acusações não são
+                        tratados como se fossem a mesma coisa.
+
+                        O site deve sempre indicar a fonte
+                        e o estado do processo.
+
+                    </p>
+
+
+                    <div class="case-status">
+
+                        <strong>
+                            FATOS DOCUMENTADOS
+                        </strong>
+
+
+                        <span>
+                            JUSTIÇA
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FRASE
+    ===================================================== -->
+
+    <section class="quote">
+
+        <div>
+
+            <blockquote>
+
+                “São Paulo não é apenas
+                um lugar.
+
+                É uma história sendo
+                escrita todos os dias.”
+
+            </blockquote>
+
+
+            <cite>
+                AVE 011 — PAX PAULINA
+            </cite>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer>
+
+        <div class="logo">
+
+            <span>AVE</span> 011
+
+        </div>
+
+
+        <p>
+            História • Memória • Identidade
         </p>
 
-        <input
-            class="input"
-            id="username"
-            placeholder="Nome de usuário ou e-mail"
-        >
 
-        <input
-            class="input"
-            type="password"
-            id="password"
-            placeholder="Senha"
-        >
+        <p>
+            © 2026 011
+        </p>
 
-        <div id="registerFields" style="display:none">
+    </footer>
 
-            <input
-                class="input"
-                placeholder="Seu e-mail"
-            >
 
-            <input
-                class="input"
-                type="password"
-                placeholder="Confirmar senha"
-            >
 
-        </div>
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
 
-        <button
-            class="login-btn"
-            onclick="submitAuth()"
-            id="authButton">
-            Entrar
-        </button>
+    <script>
 
-    </div>
 
-</div>
+        /* ============================================
+           ANIMAÇÃO DA LINHA DO TEMPO
+        ============================================ */
 
-<script>
+        const eventos =
+            document.querySelectorAll(".event");
 
-    let authMode = "login";
 
-    function openModal(mode) {
+        const observer =
+            new IntersectionObserver(
 
-        authMode = mode;
+                (entries) => {
 
-        document
-            .getElementById("modal")
-            .classList.add("active");
+                    entries.forEach(entry => {
 
-        const title = document.getElementById("modalTitle");
-        const description = document.getElementById("modalDescription");
-        const button = document.getElementById("authButton");
-        const fields = document.getElementById("registerFields");
+                        if (
+                            entry.isIntersecting
+                        ) {
 
-        if (mode === "login") {
+                            entry.target.style.opacity =
+                                "1";
 
-            title.innerText = "Entrar";
-            description.innerText =
-                "Entre na sua conta da comunidade.";
-            button.innerText = "Entrar";
-            fields.style.display = "none";
+                            entry.target.style.transform =
+                                "translateY(0)";
 
-        } else {
+                        }
 
-            title.innerText = "Criar conta";
-            description.innerText =
-                "Faça parte da comunidade Multi Theft Auto.";
-            button.innerText = "Criar minha conta";
-            fields.style.display = "block";
+                    });
 
-        }
-    }
+                },
 
-    function closeModal() {
+                {
+                    threshold: 0.15
+                }
 
-        document
-            .getElementById("modal")
-            .classList.remove("active");
-
-    }
-
-    function submitAuth() {
-
-        const username =
-            document.getElementById("username").value;
-
-        const password =
-            document.getElementById("password").value;
-
-        if (!username || !password) {
-
-            alert("Preencha todos os campos.");
-
-            return;
-        }
-
-        if (
-            authMode === "login" &&
-            username === "nicolasjota"
-        ) {
-
-            alert(
-                "Login de demonstração detectado. " +
-                "A autenticação real será conectada ao backend."
             );
 
-        } else {
 
-            alert(
-                authMode === "login"
-                    ? "Sistema de login pronto para conectar ao backend."
-                    : "Cadastro pronto para conectar ao banco de dados."
+        eventos.forEach(evento => {
+
+            observer.observe(evento);
+
+        });
+
+
+
+        /* ============================================
+           HEADER NO SCROLL
+        ============================================ */
+
+        const header =
+            document.querySelector("header");
+
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (
+                    window.scrollY > 60
+                ) {
+
+                    header.style.background =
+                        "rgba(3,3,3,.96)";
+
+                } else {
+
+                    header.style.background =
+                        "rgba(5,5,5,.70)";
+
+                }
+
+            }
+        );
+
+
+
+        /* ============================================
+           CLIQUE DOS LINKS
+        ============================================ */
+
+        document.querySelectorAll(
+            'a[href^="#"]'
+        ).forEach(link => {
+
+            link.addEventListener(
+                "click",
+                function(e) {
+
+                    const destino =
+                        document.querySelector(
+                            this.getAttribute("href")
+                        );
+
+
+                    if (destino) {
+
+                        e.preventDefault();
+
+                        destino.scrollIntoView({
+                            behavior: "smooth"
+                        });
+
+                    }
+
+                }
             );
 
-        }
+        });
 
-    }
+    </script>
 
-    function like(element) {
-
-        if (element.innerText.includes("♡")) {
-
-            element.innerText = "♥ Curtido";
-            element.style.color = "#00ff88";
-
-        } else {
-
-            element.innerText = "♡ Curtir";
-            element.style.color = "";
-
-        }
-
-    }
-
-    /*
-       Simulação de atualização dos jogadores.
-       Na versão real isso será substituído
-       por WebSocket / Socket.IO.
-    */
-
-    setInterval(() => {
-
-        const element =
-            document.getElementById("players");
-
-        let value =
-            parseInt(element.innerText.replace(",", ""));
-
-        const variation =
-            Math.floor(Math.random() * 11) - 5;
-
-        value += variation;
-
-        element.innerText =
-            value.toLocaleString("pt-BR");
-
-    }, 3000);
-
-</script>
 
 </body>
+
 </html>
