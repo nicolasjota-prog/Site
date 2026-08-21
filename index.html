@@ -1,0 +1,1197 @@
+# Nexus — Portal da Comunidade
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexus — Comunidade</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg: #080b14;
+    --card: rgba(19, 24, 40, .88);
+    --card2: #111729;
+    --primary: #5865f2;
+    --primary2: #7289ff;
+    --cyan: #00d4ff;
+    --text: #f5f7ff;
+    --muted: #9299ad;
+    --success: #35d07f;
+    --danger: #ff5370;
+    --border: rgba(255,255,255,.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(88,101,242,.20), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(0,212,255,.10), transparent 30%),
+        var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* LOGIN */
+
+#authScreen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.auth-container {
+    width: min(1050px, 100%);
+    display: grid;
+    grid-template-columns: 1fr 430px;
+    min-height: 650px;
+    background: rgba(12,16,29,.88);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 30px 100px rgba(0,0,0,.55);
+    backdrop-filter: blur(20px);
+}
+
+.hero {
+    padding: 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:
+        linear-gradient(135deg, rgba(88,101,242,.18), transparent),
+        radial-gradient(circle at 70% 40%, rgba(0,212,255,.13), transparent 35%);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.logo-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #5865f2, #00c8ff);
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    font-weight: 800;
+    box-shadow: 0 12px 35px rgba(88,101,242,.35);
+}
+
+.logo span {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 5vw, 65px);
+    line-height: 1.02;
+    margin-bottom: 22px;
+}
+
+.gradient {
+    background: linear-gradient(90deg,#7582ff,#00d4ff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 580px;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.feature {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.03);
+    border-radius: 12px;
+    color: #c9cde0;
+    font-size: 13px;
+}
+
+/* AUTH */
+
+.auth-box {
+    background: rgba(17,23,41,.82);
+    padding: 50px 42px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-box h2 {
+    font-size: 29px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: var(--muted);
+    margin-bottom: 28px;
+}
+
+.tabs {
+    display: flex;
+    background: #0a0e1b;
+    padding: 5px;
+    border-radius: 13px;
+    margin-bottom: 25px;
+}
+
+.tabs button {
+    flex: 1;
+    border: 0;
+    padding: 11px;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--muted);
+}
+
+.tabs button.active {
+    background: var(--primary);
+    color: white;
+}
+
+.form {
+    display: none;
+}
+
+.form.active {
+    display: block;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    color: #b7bdd0;
+    margin: 16px 0 7px;
+}
+
+input {
+    width: 100%;
+    background: #090d19;
+    color: white;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 14px;
+    outline: none;
+    transition: .2s;
+}
+
+input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(88,101,242,.13);
+}
+
+.btn {
+    width: 100%;
+    margin-top: 22px;
+    padding: 14px;
+    border: 0;
+    border-radius: 11px;
+    background: linear-gradient(90deg,var(--primary),#6978ff);
+    color: white;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(88,101,242,.25);
+}
+
+.message {
+    margin-top: 15px;
+    font-size: 13px;
+    text-align: center;
+    min-height: 18px;
+}
+
+/* APP */
+
+#app {
+    display: none;
+    min-height: 100vh;
+}
+
+.sidebar {
+    position: fixed;
+    width: 255px;
+    height: 100vh;
+    background: rgba(10,14,27,.96);
+    border-right: 1px solid var(--border);
+    padding: 25px 15px;
+}
+
+.side-logo {
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.nav-title {
+    color: #646b7f;
+    font-size: 11px;
+    font-weight: 700;
+    margin: 20px 12px 8px;
+    text-transform: uppercase;
+}
+
+.nav button {
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    margin-bottom: 5px;
+    border: 0;
+    border-radius: 10px;
+    color: #aab0c2;
+    background: transparent;
+}
+
+.nav button:hover,
+.nav button.active {
+    color: white;
+    background: rgba(88,101,242,.16);
+}
+
+.logout {
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    right: 15px;
+    color: #ff7087 !important;
+}
+
+.main {
+    margin-left: 255px;
+    padding: 35px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.topbar h1 {
+    font-size: 28px;
+}
+
+.user {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: var(--card);
+    padding: 8px 14px 8px 8px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.avatar {
+    width: 37px;
+    height: 37px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    background: linear-gradient(135deg,var(--primary),var(--cyan));
+    font-weight: 800;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    padding: 22px;
+    backdrop-filter: blur(15px);
+}
+
+.stat {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.number {
+    font-size: 29px;
+    font-weight: 800;
+    margin-top: 8px;
+}
+
+.green {
+    color: var(--success);
+}
+
+.blue {
+    color: #7289ff;
+}
+
+.purple {
+    color: #c07cff;
+}
+
+.orange {
+    color: #ffb457;
+}
+
+.panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.panel h2 {
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    text-align: left;
+    padding: 14px 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+}
+
+.table th {
+    color: var(--muted);
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 7px;
+    font-size: 11px;
+    background: rgba(53,208,127,.12);
+    color: var(--success);
+}
+
+.admin-badge {
+    background: rgba(192,124,255,.13);
+    color: #c07cff;
+}
+
+.story {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+}
+
+.story-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 17px;
+}
+
+.story-card h3 {
+    margin-bottom: 10px;
+}
+
+.story-card p {
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.timeline {
+    border-left: 2px solid var(--primary);
+    padding-left: 25px;
+}
+
+.timeline-item {
+    margin-bottom: 25px;
+}
+
+.timeline-item strong {
+    color: #7289ff;
+}
+
+.timeline-item p {
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.6;
+}
+
+@media(max-width:850px) {
+    .auth-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        display: none;
+    }
+
+    .sidebar {
+        width: 70px;
+    }
+
+    .sidebar .side-logo span,
+    .nav button span,
+    .nav-title {
+        display: none;
+    }
+
+    .main {
+        margin-left: 70px;
+        padding: 20px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .story {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:550px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .main {
+        padding: 15px;
+    }
+
+    .auth-box {
+        padding: 35px 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<section id="authScreen">
+
+<div class="auth-container">
+
+    <div class="hero">
+        <div class="logo">
+            <div class="logo-icon">N</div>
+            <span>NEXUS</span>
+        </div>
+
+        <h1>
+            Sua comunidade.<br>
+            <span class="gradient">Seu espaço.</span>
+        </h1>
+
+        <p>
+            Um portal moderno inspirado no universo das comunidades digitais.
+            Explore informações sobre o Discord, acompanhe usuários e
+            administre sua plataforma em um único lugar.
+        </p>
+
+        <div class="features">
+            <div class="feature">🔐 Login seguro</div>
+            <div class="feature">👥 Comunidade</div>
+            <div class="feature">📊 Dashboard</div>
+            <div class="feature">⚡ Interface rápida</div>
+        </div>
+    </div>
+
+    <div class="auth-box">
+
+        <div class="logo">
+            <div class="logo-icon">N</div>
+            <span>Nexus</span>
+        </div>
+
+        <h2>Bem-vindo</h2>
+        <p class="subtitle">Entre ou crie sua conta para continuar.</p>
+
+        <div class="tabs">
+            <button class="active" onclick="showAuth('login',this)">Entrar</button>
+            <button onclick="showAuth('register',this)">Criar conta</button>
+        </div>
+
+        <form id="login" class="form active" onsubmit="login(event)">
+            <label>Nome de usuário</label>
+            <input id="loginUser" type="text" placeholder="Digite seu usuário" required>
+
+            <label>Senha</label>
+            <input id="loginPass" type="password" placeholder="Digite sua senha" required>
+
+            <button class="btn">Entrar na plataforma</button>
+
+            <div id="loginMsg" class="message"></div>
+        </form>
+
+        <form id="register" class="form" onsubmit="register(event)">
+            <label>Nome de usuário</label>
+            <input id="regUser" type="text" placeholder="Escolha um usuário" required>
+
+            <label>E-mail</label>
+            <input id="regEmail" type="email" placeholder="seu@email.com" required>
+
+            <label>Senha</label>
+            <input id="regPass" type="password" placeholder="Crie uma senha" required>
+
+            <button class="btn">Criar minha conta</button>
+
+            <div id="regMsg" class="message"></div>
+        </form>
+
+    </div>
+</div>
+</section>
+
+<!-- APP -->
+
+<div id="app">
+
+<aside class="sidebar">
+
+    <div class="logo side-logo">
+        <div class="logo-icon">N</div>
+        <span>NEXUS</span>
+    </div>
+
+    <div class="nav-title">Principal</div>
+
+    <div class="nav">
+        <button class="active" onclick="openPage('dashboard',this)">
+            🏠 <span>Dashboard</span>
+        </button>
+
+        <button onclick="openPage('discord',this)">
+            💬 <span>Sobre o Discord</span>
+        </button>
+
+        <button onclick="openPage('timeline',this)">
+            🕐 <span>História</span>
+        </button>
+    </div>
+
+    <div class="nav-title">Administração</div>
+
+    <div class="nav">
+        <button onclick="openPage('users',this)">
+            👥 <span>Usuários</span>
+        </button>
+
+        <button onclick="openPage('logs',this)">
+            📋 <span>Logs de acesso</span>
+        </button>
+    </div>
+
+    <div class="nav">
+        <button class="logout" onclick="logout()">
+            🚪 <span>Sair da conta</span>
+        </button>
+    </div>
+
+</aside>
+
+<main class="main">
+
+    <div class="topbar">
+        <div>
+            <h1 id="pageTitle">Dashboard</h1>
+        </div>
+
+        <div class="user">
+            <div class="avatar" id="avatar">N</div>
+            <div>
+                <strong id="currentUser">nicolasjota</strong><br>
+                <small style="color:#8d94a8">Online agora</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+
+    <section id="dashboard" class="page active">
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="stat">Usuários cadastrados</div>
+                <div class="number blue" id="usersCount">1</div>
+            </div>
+
+            <div class="card">
+                <div class="stat">Logins registrados</div>
+                <div class="number purple" id="logsCount">1</div>
+            </div>
+
+            <div class="card">
+                <div class="stat">Status do sistema</div>
+                <div class="number green">Online</div>
+            </div>
+
+            <div class="card">
+                <div class="stat">Permissão</div>
+                <div class="number orange" id="roleDisplay">ADMIN</div>
+            </div>
+
+        </div>
+
+        <div class="panel">
+            <h2>⚡ Bem-vindo ao Nexus</h2>
+
+            <p style="color:#9299ad;line-height:1.8">
+                Este painel foi criado para ser uma base de uma plataforma
+                comunitária moderna. Aqui você pode administrar usuários,
+                visualizar registros de acesso e conhecer a história do Discord.
+            </p>
+        </div>
+
+        <div class="panel">
+            <h2>🛡️ Conta atual</h2>
+
+            <table class="table">
+                <tr>
+                    <th>Usuário</th>
+                    <th>Função</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td id="dashUser">nicolasjota</td>
+                    <td><span class="badge admin-badge">Administrador</span></td>
+                    <td><span class="badge">Online</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </section>
+
+    <!-- DISCORD -->
+
+    <section id="discord" class="page">
+
+        <div class="panel">
+            <h2>💬 O que é o Discord?</h2>
+
+            <p style="color:#9299ad;line-height:1.9">
+                Discord é uma plataforma de comunicação criada originalmente
+                com foco em comunidades de jogos. Ela permite comunicação por
+                texto, voz e vídeo, além da criação de servidores organizados
+                em canais e categorias.
+            </p>
+        </div>
+
+        <div class="story">
+
+            <div class="story-card">
+                <h3>🎮 Comunidades</h3>
+                <p>
+                    Servidores permitem reunir pessoas em torno de jogos,
+                    tecnologia, música, estudos, entretenimento e diversos
+                    outros interesses.
+                </p>
+            </div>
+
+            <div class="story-card">
+                <h3>🔊 Comunicação</h3>
+                <p>
+                    A plataforma ficou conhecida especialmente pelas salas
+                    de voz, permitindo que grupos permanecessem conversando
+                    enquanto jogavam.
+                </p>
+            </div>
+
+            <div class="story-card">
+                <h3>🤖 Bots</h3>
+                <p>
+                    Bots ampliam os recursos dos servidores, oferecendo
+                    automações, moderação, música, sistemas de níveis e muito
+                    mais.
+                </p>
+            </div>
+
+            <div class="story-card">
+                <h3>🛡️ Moderação</h3>
+                <p>
+                    Administradores podem organizar permissões, cargos,
+                    canais e ferramentas para controlar comunidades.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TIMELINE -->
+
+    <section id="timeline" class="page">
+
+        <div class="panel">
+            <h2>🕐 Linha do tempo do Discord</h2>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <strong>2015 — Fundação</strong>
+                    <p>
+                        O Discord foi lançado como uma plataforma de comunicação
+                        voltada inicialmente para jogadores.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <strong>2016 — Crescimento</strong>
+                    <p>
+                        A plataforma começou a ganhar popularidade entre
+                        comunidades de jogos e tecnologia.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <strong>2017 — Expansão</strong>
+                    <p>
+                        O Discord passou a ser utilizado por comunidades
+                        muito além do universo dos jogos.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <strong>2020 — Grande crescimento</strong>
+                    <p>
+                        O uso da plataforma cresceu fortemente durante o período
+                        em que muitas pessoas passaram a utilizar comunidades
+                        digitais para comunicação e convivência.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <strong>Hoje — Comunidades digitais</strong>
+                    <p>
+                        O Discord se tornou uma plataforma ampla para grupos,
+                        criadores, comunidades e comunicação online.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- USERS -->
+
+    <section id="users" class="page">
+
+        <div class="panel">
+            <h2>👥 Usuários cadastrados</h2>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Usuário</th>
+                        <th>E-mail</th>
+                        <th>Função</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="usersTable"></tbody>
+            </table>
+        </div>
+
+    </section>
+
+    <!-- LOGS -->
+
+    <section id="logs" class="page">
+
+        <div class="panel">
+            <h2>📋 Registro de acessos</h2>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Usuário</th>
+                        <th>Data</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+
+                <tbody id="logsTable"></tbody>
+            </table>
+        </div>
+
+    </section>
+
+</main>
+
+</div>
+
+<script>
+
+/* ================================
+   DADOS DO SISTEMA
+================================ */
+
+const ADMIN = {
+    username: "nicolasjota",
+    password: "12345",
+    email: "admin@nexus.local",
+    role: "Administrador"
+};
+
+let users = JSON.parse(localStorage.getItem("nexusUsers")) || [];
+
+let logs = JSON.parse(localStorage.getItem("nexusLogs")) || [];
+
+/* Garante que o administrador exista */
+
+if (!users.some(u => u.username === ADMIN.username)) {
+    users.unshift(ADMIN);
+    saveUsers();
+}
+
+/* ================================
+   AUTH
+================================ */
+
+function showAuth(type, button) {
+
+    document.querySelectorAll(".tabs button")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    document.querySelectorAll(".form")
+        .forEach(form => form.classList.remove("active"));
+
+    document.getElementById(type).classList.add("active");
+}
+
+function login(event) {
+
+    event.preventDefault();
+
+    const username =
+        document.getElementById("loginUser").value.trim();
+
+    const password =
+        document.getElementById("loginPass").value;
+
+    let user = users.find(
+        u => u.username === username &&
+             u.password === password
+    );
+
+    if (!user) {
+
+        document.getElementById("loginMsg").innerHTML =
+            `<span style="color:#ff5370">
+                Usuário ou senha incorretos.
+            </span>`;
+
+        return;
+    }
+
+    addLog(username, "Login realizado");
+
+    localStorage.setItem(
+        "nexusSession",
+        username
+    );
+
+    openApp(user);
+}
+
+function register(event) {
+
+    event.preventDefault();
+
+    const username =
+        document.getElementById("regUser").value.trim();
+
+    const email =
+        document.getElementById("regEmail").value.trim();
+
+    const password =
+        document.getElementById("regPass").value;
+
+    if (users.some(u => u.username === username)) {
+
+        document.getElementById("regMsg").innerHTML =
+            `<span style="color:#ff5370">
+                Esse usuário já existe.
+            </span>`;
+
+        return;
+    }
+
+    const newUser = {
+        username,
+        email,
+        password,
+        role: "Usuário"
+    };
+
+    users.push(newUser);
+
+    saveUsers();
+
+    addLog(username, "Conta criada");
+
+    document.getElementById("regMsg").innerHTML =
+        `<span style="color:#35d07f">
+            Conta criada com sucesso! Agora faça login.
+        </span>`;
+
+    document.getElementById("regUser").value = "";
+    document.getElementById("regEmail").value = "";
+    document.getElementById("regPass").value = "";
+}
+
+function openApp(user) {
+
+    document.getElementById("authScreen").style.display = "none";
+
+    document.getElementById("app").style.display = "block";
+
+    document.getElementById("currentUser").textContent =
+        user.username;
+
+    document.getElementById("dashUser").textContent =
+        user.username;
+
+    document.getElementById("avatar").textContent =
+        user.username.charAt(0).toUpperCase();
+
+    document.getElementById("roleDisplay").textContent =
+        user.role === "Administrador" ? "ADMIN" : "USER";
+
+    updateDashboard();
+
+    renderUsers();
+
+    renderLogs();
+}
+
+function logout() {
+
+    localStorage.removeItem("nexusSession");
+
+    location.reload();
+}
+
+/* ================================
+   NAVEGAÇÃO
+================================ */
+
+function openPage(page, button) {
+
+    document.querySelectorAll(".page")
+        .forEach(p => p.classList.remove("active"));
+
+    document.getElementById(page)
+        .classList.add("active");
+
+    document.querySelectorAll(".nav button")
+        .forEach(b => b.classList.remove("active"));
+
+    button.classList.add("active");
+
+    const titles = {
+        dashboard: "Dashboard",
+        discord: "Sobre o Discord",
+        timeline: "História do Discord",
+        users: "Usuários",
+        logs: "Logs de acesso"
+    };
+
+    document.getElementById("pageTitle").textContent =
+        titles[page];
+}
+
+/* ================================
+   USUÁRIOS
+================================ */
+
+function saveUsers() {
+
+    localStorage.setItem(
+        "nexusUsers",
+        JSON.stringify(users)
+    );
+}
+
+function renderUsers() {
+
+    const table =
+        document.getElementById("usersTable");
+
+    table.innerHTML = "";
+
+    users.forEach(user => {
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${escapeHTML(user.username)}</td>
+
+            <td>${escapeHTML(user.email || "-")}</td>
+
+            <td>
+                <span class="badge ${
+                    user.role === "Administrador"
+                    ? "admin-badge"
+                    : ""
+                }">
+                    ${escapeHTML(user.role)}
+                </span>
+            </td>
+
+            <td>
+                <span class="badge">Ativo</span>
+            </td>
+        `;
+
+        table.appendChild(tr);
+    });
+}
+
+/* ================================
+   LOGS
+================================ */
+
+function addLog(username, action) {
+
+    logs.unshift({
+        username,
+        action,
+        date: new Date().toLocaleString("pt-BR")
+    });
+
+    localStorage.setItem(
+        "nexusLogs",
+        JSON.stringify(logs)
+    );
+}
+
+function renderLogs() {
+
+    const table =
+        document.getElementById("logsTable");
+
+    table.innerHTML = "";
+
+    logs.forEach(log => {
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${escapeHTML(log.username)}</td>
+            <td>${escapeHTML(log.date)}</td>
+            <td>
+                <span class="badge">
+                    ${escapeHTML(log.action)}
+                </span>
+            </td>
+        `;
+
+        table.appendChild(tr);
+    });
+}
+
+/* ================================
+   DASHBOARD
+================================ */
+
+function updateDashboard() {
+
+    document.getElementById("usersCount").textContent =
+        users.length;
+
+    document.getElementById("logsCount").textContent =
+        logs.length;
+}
+
+/* ================================
+   SEGURANÇA BÁSICA DE EXIBIÇÃO
+================================ */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+/* ================================
+   RESTAURAR SESSÃO
+================================ */
+
+const session =
+    localStorage.getItem("nexusSession");
+
+if (session) {
+
+    const user =
+        users.find(u => u.username === session);
+
+    if (user) {
+        openApp(user);
+    }
+}
+
+</script>
+
+</body>
+</html>
+```
